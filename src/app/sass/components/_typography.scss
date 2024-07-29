@@ -1,0 +1,17 @@
+@use "../abstracts" as *;
+
+body {
+  @include body;
+}
+
+h4 {
+  @include h4;
+}
+
+h3 {
+  @include h3;
+}
+
+h2 {
+  @include h2;
+}

@@ -1,0 +1,22 @@
+@use "../../sass/abstracts" as *;
+
+.search-bar {
+  background-color: var(--neutral-0);
+  padding: 23px 34px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  -moz-box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  input {
+    all: unset;
+    flex: 1;
+    caret-color: clr(primary, 400);
+    font-size: 18px;
+  }
+}
+.error {
+  color: clr(red, 400);
+}

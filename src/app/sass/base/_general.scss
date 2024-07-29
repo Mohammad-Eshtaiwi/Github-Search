@@ -1,0 +1,27 @@
+@use "../abstracts/" as *;
+:root {
+  @each $name, $shades in $colors {
+    @each $shade, $color in $shades {
+      --#{$name}-#{$shade}: #{$color};
+    }
+  }
+  --card-padding: $card-body-padding;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @include body;
+  background-color: clr(neutral, 400);
+  padding-block: 7.125rem;
+}
+
+ul {
+  padding-left: 0;
+}
+
+p {
+  margin-bottom: 0;
+}

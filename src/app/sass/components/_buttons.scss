@@ -1,0 +1,24 @@
+@use "../abstracts" as *;
+
+.btn {
+  align-items: center;
+  font-weight: 600;
+  // font-size: 0.75rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0.5em 1em;
+  &[data-type="primary"] {
+    color: #fff;
+    background-color: var(--primary, clr(primary, 400));
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: #fff;
+      background-color: clr(primary, 400);
+    }
+  }
+}
