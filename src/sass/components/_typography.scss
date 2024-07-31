@@ -1,17 +1,21 @@
 @use "../abstracts" as *;
 
-body {
+body,
+.body {
   @include body;
 }
 
-h4 {
+h4,
+.h4 {
   @include h4;
 }
 
-h3 {
+h3,
+.h3 {
   @include h3;
 }
 
-h2 {
+h2,
+.h2 {
   @include h2;
 }

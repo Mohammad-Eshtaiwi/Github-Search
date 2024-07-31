@@ -1,0 +1,49 @@
+.user-card {
+  padding: 48px;
+  background-color: var(--neutral-0);
+
+  [data-header-title] {
+    display: flex;
+  }
+}
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.statistics {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background-color: var(--neutral-400);
+  padding: 15px 32px;
+  margin-block: 2rem;
+  border-radius: 10px;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    [data-header] {
+      font-size: 0.8125rem;
+    }
+  }
+}
+.find-me {
+  list-style: none;
+  display: grid;
+  row-gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  li {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    [data-header] {
+      font-size: 0.8125rem;
+    }
+  }
+}
+.container {
+  margin-top: 1.5rem;
+}

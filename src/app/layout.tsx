@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
-import "@/app/sass/main.scss";
-import Header from "@/app/components/header/Header";
+import "@/sass/main.scss";
+import Header from "@/components/header/Header";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
