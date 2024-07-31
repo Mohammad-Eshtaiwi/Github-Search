@@ -1,17 +1,33 @@
 import Image from "next/image";
 import classNames from "./user-card.module.scss";
+import { githubUser } from "@/types/githubUser";
 
-const UserCard = () => {
-  console.log(classNames);
-
+const UserCard = ({ user }: { user: githubUser }) => {
   return (
     <article className={classNames["user-card"]}>
       <div className={classNames["header"]}>
-        <p className="h1">The Octocat</p>
-        <p>Joined 25 Jan 2011</p>
-        <a href="">@octocat</a>
+        <Image
+          src={user.avatar_url}
+          width={120}
+          height={120}
+          alt={user.name || ""}
+          data-img
+        />
+        <div data-metadata>
+          <p className="h1" data-name>
+            {user.name || user.login}
+          </p>
+          <p data-date>Joined 25 Jan 2011</p>
+          <a href={user.url} data-url>
+            @octocat
+          </a>
+        </div>
+        <p className={classNames["bio"]} data-bio>
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+          Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer
+          adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+        </p>
       </div>
-      <p className={classNames["bio"]}>This profile has no bio</p>
       <ul className={classNames["statistics"]}>
         <li className="h2">
           <span data-header>Repos</span>

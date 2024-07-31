@@ -1,6 +1,13 @@
+@use "../../sass/abstracts" as *;
+
 .user-card {
+  --header-gap: 2.375rem;
+  --img-size: 120px;
   padding: 48px;
   background-color: var(--neutral-0);
+  -webkit-box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  -moz-box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
 
   [data-header-title] {
     display: flex;
@@ -8,9 +15,29 @@
 }
 .header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
   gap: 0.5rem;
+  column-gap: var(--header-gap);
   margin-bottom: 1.25rem;
+  grid-template-areas:
+    "img metadata"
+    "img bio";
+  [data-img] {
+    grid-area: img;
+    align-self: flex-start;
+    border-radius: 1000px;
+    outline: 5px solid black;
+  }
+  [data-metadata] {
+    grid-area: metadata;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  [data-bio] {
+    grid-area: bio;
+  }
 }
 .statistics {
   list-style: none;
@@ -44,6 +71,13 @@
     }
   }
 }
+
+.statistics,
+.find-me {
+  margin-inline-start: calc((var(--header-gap, 0) + var(--img-size, 0)));
+}
 .container {
   margin-top: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
 }

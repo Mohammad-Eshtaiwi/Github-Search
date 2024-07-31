@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
 import "@/sass/main.scss";
 import Header from "@/components/header/Header";
+import ReactQueryProvider from "@/reactQuery/ReactQueryProvider";
 
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={spaceMono.className}>
-        <div className="container">
-          <Header />
-          {children}
-        </div>
+        <ReactQueryProvider>
+          <div className="container">
+            <Header />
+            {children}
+          </div>
+        </ReactQueryProvider>
       </body>
     </html>
   );
