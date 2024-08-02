@@ -10,13 +10,39 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  input {
+  [data-search-input] {
     all: unset;
     flex: 1;
     caret-color: clr(primary, 400);
     font-size: 18px;
   }
 }
+
+.search-type {
+  display: flex;
+  width: fit-content;
+  overflow: hidden;
+  background-color: var(--neutral-800);
+  color: var(--neutral-0);
+  border-radius: 32px;
+  padding: 8px 12px;
+  position: relative;
+  &::before {
+    transition: transform 0.3s ease-in;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background-color: var(--neutral-800);
+    transform: translateX(0%);
+  }
+  &[data-active="true"]::before {
+    transform: translateX(-100%);
+  }
+}
+
 .error {
   color: clr(red, 400);
 }

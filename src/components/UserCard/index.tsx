@@ -73,7 +73,9 @@ const UserCard = ({ user }: { user: githubUser }) => {
             alt="website"
             src={"assets/icon-website.svg"}
           />
-          <span data-value>{user.blog || notAvailable}</span>
+          <a href={user.blog || undefined} target="_blank" data-value>
+            {user.blog || notAvailable}
+          </a>
         </li>
         <li>
           <Image

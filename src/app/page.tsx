@@ -6,6 +6,7 @@ import { useCallback, useRef, useState } from "react";
 export default function Home() {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const [query, setQuery] = useState("");
+  const [searchType, setSearchType] = useState<"user" | "repo">("user");
 
   const handleSearch = useCallback(async (query: string) => {
     if (!query) return;
@@ -19,10 +20,17 @@ export default function Home() {
     }, 1000); // Adjust the delay as needed
   }, []);
 
+  const handleToggleSearchInfo = () =>
+    setSearchType((prev) => (prev === "user" ? "repo" : "user"));
   return (
     <main>
-      <SearchBar handleSearch={handleSearch} />
-      <UserCards query={query} />
+      <SearchBar
+        handleSearch={handleSearch}
+        handleToggleSearchInfo={handleToggleSearchInfo}
+        searchType={searchType}
+      />
+      {searchType === "user" && <UserCards query={query} />}
+      {searchType === "repo" && "repo"}
     </main>
   );
 }

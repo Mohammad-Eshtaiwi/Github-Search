@@ -3,8 +3,12 @@ import Image from "next/image";
 import classNames from "./search-bar.module.scss";
 function SearchBar({
   handleSearch,
+  searchType,
+  handleToggleSearchInfo,
 }: {
   handleSearch: (query: string) => void;
+  handleToggleSearchInfo: () => void;
+  searchType: "user" | "repo";
 }) {
   return (
     <form className={classNames["search-bar"]}>
@@ -18,10 +22,19 @@ function SearchBar({
       </div>
       <input
         type="text"
-        placeholder="Search GitHub username…"
+        placeholder={`Search GitHub ${searchType}…`}
         onChange={(e) => handleSearch(e.target.value)}
+        data-search-input
       />
-      <p className={classNames["error"]}>No results</p>
+      <button
+        className={`${classNames["search-type"]}`}
+        data-active={searchType === "user"}
+        type="button"
+        onClick={handleToggleSearchInfo}
+      >
+        <span>User</span>
+        <span>Repo</span>
+      </button>
     </form>
   );
 }
