@@ -1,45 +1,50 @@
 import Image from "next/image";
 import classNames from "./user-card.module.scss";
 import { githubUser } from "@/types/githubUser";
+import formatDate from "@/utils/formatDate";
+
+const noBio = `This profile has no bio`;
+const notAvailable = `Not Available`;
 
 const UserCard = ({ user }: { user: githubUser }) => {
   return (
     <article className={classNames["user-card"]}>
       <div className={classNames["header"]}>
         <Image
-          src={user.avatar_url}
+          src={user?.avatar_url}
           width={120}
           height={120}
-          alt={user.name || ""}
+          alt={user?.name || ""}
           data-img
         />
         <div data-metadata>
           <p className="h1" data-name>
-            {user.name || user.login}
+            {user?.name || user?.login}
           </p>
-          <p data-date>Joined 25 Jan 2011</p>
-          <a href={user.url} data-url>
-            @octocat
+          <p data-date>
+            Joined At{" "}
+            {user.created_at ? formatDate(user.created_at) : "Who knows"}
+          </p>
+          <a href={user?.html_url} target="_blank" data-url>
+            @{user.login}
           </a>
         </div>
         <p className={classNames["bio"]} data-bio>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
-          Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer
-          adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+          {user.bio || noBio}
         </p>
       </div>
       <ul className={classNames["statistics"]}>
         <li className="h2">
           <span data-header>Repos</span>
-          <span>8</span>
+          <span data-value>{user.public_repos}</span>
         </li>
         <li className="h2">
           <span data-header>Followers</span>
-          <span>8</span>
+          <span data-value>{user.followers}</span>
         </li>
         <li className="h2">
           <span data-header>Following</span>
-          <span>9</span>
+          <span data-value>{user.following}</span>
         </li>
       </ul>
       <ul className={classNames["find-me"]}>
@@ -50,7 +55,7 @@ const UserCard = ({ user }: { user: githubUser }) => {
             alt="location"
             src={"assets/icon-location.svg"}
           />
-          San Francisco
+          <span data-value>{user.location || notAvailable}</span>
         </li>
         <li>
           <Image
@@ -59,7 +64,7 @@ const UserCard = ({ user }: { user: githubUser }) => {
             alt="twitter"
             src={"assets/icon-twitter.svg"}
           />
-          Not Available
+          <span data-value>{user.twitter_username || notAvailable}</span>
         </li>
         <li>
           <Image
@@ -68,7 +73,7 @@ const UserCard = ({ user }: { user: githubUser }) => {
             alt="website"
             src={"assets/icon-website.svg"}
           />
-          https://github.blog
+          <span data-value>{user.blog || notAvailable}</span>
         </li>
         <li>
           <Image
@@ -77,7 +82,7 @@ const UserCard = ({ user }: { user: githubUser }) => {
             alt="company"
             src={"assets/icon-company.svg"}
           />
-          San Francisco
+          <span data-value>{user.company || notAvailable}</span>
         </li>
       </ul>
     </article>

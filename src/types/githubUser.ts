@@ -12,7 +12,7 @@ export type githubUser = {
   repos_url: string;
   received_events_url: string;
   type: string;
-  score: number;
+  score?: number;
   following_url: string;
   gists_url: string;
   starred_url: string;
@@ -42,4 +42,5 @@ export type githubUser = {
   blog?: string | null;
   company?: string | null;
   suspended_at?: string | null;
+  twitter_username?: string | null;
 };

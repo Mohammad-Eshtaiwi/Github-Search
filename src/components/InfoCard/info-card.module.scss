@@ -1,0 +1,42 @@
+@use "../../sass/abstracts" as *;
+
+.info-card {
+  background-color: var(--neutral-0);
+  -webkit-box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  -moz-box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  box-shadow: 0 1px 4px rgba(clr(primary, 400), 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  padding-bottom: 1rem;
+
+  [data-name] {
+    width: 100%;
+    padding-inline: 8px;
+    width: 100%;
+    padding-inline: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+.img-container {
+  margin-inline: auto;
+  margin-top: -3rem;
+  margin-bottom: 1.5rem;
+  outline: 5px #fff solid;
+  display: block;
+  border-radius: 62.5rem;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.bg {
+  height: 100px;
+  background-image: url("/assets/bg-pattern-card.svg");
+  background-repeat: no-repeat;
+}
+.container {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 362px));
+  gap: 1.5rem;
+}

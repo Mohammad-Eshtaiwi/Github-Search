@@ -1,0 +1,26 @@
+.modal {
+  z-index: 1001;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(#000000, 0.5);
+  z-index: 1000;
+  clip-path: circle(0% at 100vw 0);
+  transition: clip-path 0.3s ease-in-out;
+}
+
+.open {
+  clip-path: circle(100%);
+}
+.close {
+  z-index: 1001;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}

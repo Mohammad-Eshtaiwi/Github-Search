@@ -7,12 +7,11 @@ const useGetUsers = (query: string) => {
     queryFn: ({ pageParam }: { pageParam: null | string }) =>
       getUsers(query, pageParam),
     initialPageParam: null,
-    getNextPageParam: (lastPage, allPages) => {
-      console.log(lastPage);
-      console.log(allPages);
+    getNextPageParam: (lastPage) => {
       return lastPage.nextLink;
     },
     enabled: !!query,
+    staleTime: 120000,
   });
   return { ...usersQuery };
 };

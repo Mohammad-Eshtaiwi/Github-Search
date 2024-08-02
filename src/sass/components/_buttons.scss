@@ -11,14 +11,17 @@
   border: 0;
   padding: 0.5em 1em;
   &[data-type="primary"] {
-    color: #fff;
-    background-color: var(--primary, clr(primary, 400));
+    color: #000;
+    background-color: var(--primary, clr(neutral, 0));
 
     &:hover,
     &:focus,
     &:active {
-      color: #fff;
-      background-color: clr(primary, 400);
+      color: #000;
+      background-color: var(--primary, clr(neutral, 0));
     }
+  }
+  &[data-rounded] {
+    border-radius: 1000px;
   }
 }
