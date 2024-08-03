@@ -1,4 +1,9 @@
-import { InfoCard, RepositoryCard, WithContextProvider } from "@/components";
+import {
+  InfoCard,
+  Loader,
+  RepositoryCard,
+  WithContextProvider,
+} from "@/components";
 import UserCardClasses from "@/components/InfoCard/info-card.module.scss";
 import Modal from "@/components/Modal";
 import { ModalProvider, useModal } from "@/components/Modal/modalContext";
@@ -14,15 +19,23 @@ const RepositoryCards = ({ query }: { query: string }) => {
   const { ref, inView } = useInView();
   const { modalActions } = useModal();
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useGetRepositories(query);
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+  } = useGetRepositories(query);
   const [repositoryRelatedDataUrls, setRepositoryRelatedDataUrls] = useState<
     string[] | null
   >(null);
 
-  const { data: repositoryRelatedData } = useGetRepositoryRelatedData(
-    repositoryRelatedDataUrls
-  );
+  const {
+    data: repositoryRelatedData,
+    isLoading: repositoryRelatedIsLoading,
+    isError: repositoryRelatedIsError,
+  } = useGetRepositoryRelatedData(repositoryRelatedDataUrls);
 
   useEffect(() => {
     const canIFetchNextNow = inView && !isFetchingNextPage && hasNextPage;
@@ -37,6 +50,13 @@ const RepositoryCards = ({ query }: { query: string }) => {
     setRepositoryRelatedDataUrls(urls);
     modalActions.openModal();
   };
+  if (isError || repositoryRelatedIsError) {
+    return (
+      <h2 className="h1" style={{ marginTop: "1rem" }}>
+        Something Wicked Happend
+      </h2>
+    );
+  }
   return (
     <>
       <div className={UserCardClasses.container}>
@@ -55,14 +75,18 @@ const RepositoryCards = ({ query }: { query: string }) => {
             />
           ))
         )}
-        <div ref={ref}>{isFetchingNextPage && "loading"}</div>
+        <div ref={ref}>{(isFetchingNextPage || isLoading) && "loading"}</div>
 
         <Modal>
           <div className={classNamesUserCard.container}>
-            {repositoryRelatedData && (
-              <RepositoryCard
-                data={repositoryRelatedData as repositoryRelatedData}
-              />
+            {repositoryRelatedIsLoading ? (
+              <Loader />
+            ) : (
+              repositoryRelatedData && (
+                <RepositoryCard
+                  data={repositoryRelatedData as repositoryRelatedData}
+                />
+              )
             )}
           </div>
         </Modal>

@@ -11,7 +11,10 @@ function SearchBar({
   searchType: "user" | "repo";
 }) {
   return (
-    <form className={classNames["search-bar"]}>
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className={classNames["search-bar"]}
+    >
       <div className={classNames["icon"]}>
         <Image
           width={24}

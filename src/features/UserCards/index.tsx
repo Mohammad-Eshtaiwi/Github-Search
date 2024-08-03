@@ -1,4 +1,4 @@
-import { InfoCard, WithContextProvider } from "@/components";
+import { InfoCard, Loader, WithContextProvider } from "@/components";
 import useGetUsers from "@/reactQuery/useGetUsers";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -15,10 +15,20 @@ const UserCards = ({ query }: { query: string }) => {
   const { ref, inView } = useInView();
   const { modalActions } = useModal();
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useGetUsers(query);
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+  } = useGetUsers(query);
   const [userUrl, setUserUrl] = useState("");
-  const { data: userData } = useGetData<githubUser>(userUrl);
+  const {
+    data: userData,
+    isError: userDataIsError,
+    isLoading: userDataIsLoading,
+  } = useGetData<githubUser>(userUrl);
   useEffect(() => {
     const canIFetchNextNow = inView && !isFetchingNextPage && hasNextPage;
     if (canIFetchNextNow) {
@@ -26,6 +36,13 @@ const UserCards = ({ query }: { query: string }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
+  if (isError || userDataIsError) {
+    return (
+      <h2 className="h1" style={{ marginTop: "1rem" }}>
+        Something Wicked Happend
+      </h2>
+    );
+  }
   return (
     <>
       <div className={UserCardClasses.container}>
@@ -46,11 +63,15 @@ const UserCards = ({ query }: { query: string }) => {
             />
           ))
         )}
-        <div ref={ref}>{isFetchingNextPage && "loading"}</div>
+        <div ref={ref}>{(isFetchingNextPage || isLoading) && "loading"}</div>
         <Modal>
-          <div className={classNamesUserCard.container}>
-            {userData && <UserCard user={userData} />}
-          </div>
+          {userDataIsLoading ? (
+            <Loader />
+          ) : (
+            <div className={classNamesUserCard.container}>
+              {userData && <UserCard user={userData} />}
+            </div>
+          )}
         </Modal>
       </div>
     </>
