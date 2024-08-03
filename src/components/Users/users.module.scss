@@ -1,0 +1,38 @@
+.users {
+  display: flex;
+  list-style: none;
+  overflow: auto;
+  padding-bottom: 0.4rem;
+  li {
+    flex: 1 0 auto;
+    border-radius: 1000px;
+    overflow: hidden;
+    transition: 0.3s ease-in margin-inline-start;
+  }
+  li + li {
+    margin-inline-start: -0.25rem;
+  }
+  &:hover li + li {
+    margin-inline-start: 0.5rem;
+  }
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 6px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #ff6f61;
+    border-radius: 6px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ff4b3e;
+  }
+}

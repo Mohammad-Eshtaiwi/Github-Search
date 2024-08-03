@@ -1,5 +1,6 @@
 "use client";
 import { SearchBar } from "@/components";
+import RepositoryCards from "@/features/RepositoryCards";
 import UserCards from "@/features/UserCards";
 import { useCallback, useRef, useState } from "react";
 
@@ -9,8 +10,6 @@ export default function Home() {
   const [searchType, setSearchType] = useState<"user" | "repo">("user");
 
   const handleSearch = useCallback(async (query: string) => {
-    if (!query) return;
-
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
@@ -29,8 +28,12 @@ export default function Home() {
         handleToggleSearchInfo={handleToggleSearchInfo}
         searchType={searchType}
       />
-      {searchType === "user" && <UserCards query={query} />}
-      {searchType === "repo" && "repo"}
+      {query && (
+        <>
+          {searchType === "user" && <UserCards query={query} />}
+          {searchType === "repo" && <RepositoryCards query={query} />}
+        </>
+      )}
     </main>
   );
 }

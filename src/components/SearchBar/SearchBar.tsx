@@ -32,8 +32,8 @@ function SearchBar({
         type="button"
         onClick={handleToggleSearchInfo}
       >
-        <span>User</span>
         <span>Repo</span>
+        <span>User</span>
       </button>
     </form>
   );
