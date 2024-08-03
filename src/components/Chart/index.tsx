@@ -32,8 +32,6 @@ const generateColors = (count: number) => {
 };
 
 const Chart = ({ data }: { data: { [key: string]: number } }) => {
-  console.log(data);
-
   const chartData = {
     labels: Object.keys(data),
     datasets: [
@@ -54,7 +52,6 @@ const Chart = ({ data }: { data: { [key: string]: number } }) => {
     plugins: {
       legend: {
         position: "bottom",
-
       },
       tooltip: {
         callbacks: {
@@ -64,7 +61,15 @@ const Chart = ({ data }: { data: { [key: string]: number } }) => {
     },
   } as any;
 
-  return <Pie data={chartData} options={options} width={400} height={400} />;
+  return (
+    <Pie
+      data={chartData}
+      options={options}
+      style={{ display: "inline" }}
+      width={400}
+      height={400}
+    />
+  );
 };
 
 export default Chart;

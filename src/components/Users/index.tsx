@@ -11,7 +11,7 @@ const Users = ({ users }: { users: SimpleUsersList }) => {
       {users.map((item) => {
         return (
           <li key={item.html_url}>
-            <a href={item.html_url}>
+            <a target="_blank" href={item.html_url}>
               <Image width={48} height={48} src={item.avatar_url!} alt="user" />
             </a>
           </li>
