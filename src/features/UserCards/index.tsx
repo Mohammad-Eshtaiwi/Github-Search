@@ -3,6 +3,8 @@ import useGetUsers from "@/reactQuery/useGetUsers";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import UserCardClasses from "@/components/InfoCard/info-card.module.scss";
+import classNamesUserCard from "@/components/UserCard/user-card.module.scss";
+
 import Modal from "@/components/Modal";
 import UserCard from "@/components/UserCard";
 import { ModalProvider, useModal } from "@/components/Modal/modalContext";
@@ -46,7 +48,7 @@ const UserCards = ({ query }: { query: string }) => {
         )}
         <div ref={ref}>{isFetchingNextPage && "loading"}</div>
         <Modal>
-          <div className="container">
+          <div className={classNamesUserCard.container}>
             {userData && <UserCard user={userData} />}
           </div>
         </Modal>

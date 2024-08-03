@@ -12,7 +12,7 @@ function SearchBar({
 }) {
   return (
     <form className={classNames["search-bar"]}>
-      <div className="icon">
+      <div className={classNames["icon"]}>
         <Image
           width={24}
           height={24}
@@ -22,7 +22,7 @@ function SearchBar({
       </div>
       <input
         type="text"
-        placeholder={`Search GitHub ${searchType}…`}
+        placeholder={`${searchType === "user" ? "User" : "Repo"}...`}
         onChange={(e) => handleSearch(e.target.value)}
         data-search-input
       />

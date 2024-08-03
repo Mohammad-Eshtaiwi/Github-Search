@@ -22,8 +22,7 @@ const UserCard = ({ user }: { user: githubUser }) => {
             {user?.name || user?.login}
           </p>
           <p data-date>
-            Joined At{" "}
-            {user.created_at ? formatDate(user.created_at) : "Who knows"}
+            Joined {user.created_at ? formatDate(user.created_at) : "Who knows"}
           </p>
           <a href={user?.html_url} target="_blank" data-url>
             @{user.login}

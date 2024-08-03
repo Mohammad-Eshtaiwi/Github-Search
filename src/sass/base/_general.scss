@@ -16,6 +16,9 @@ body {
   @include body;
   background-color: clr(neutral, 400);
   padding-block: 7.125rem;
+  @media screen and (max-width: 650px) {
+    font-size: 0.875rem;
+  }
 }
 
 ul {
